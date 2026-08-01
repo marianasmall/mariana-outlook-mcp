@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.js.map
+
+# Secrets — defense in depth (same posture as mariana-google-mcp)
+.env
+.env.*
+*credentials*
+*.secret
+*secret*
+token*.json
+client_secret*.json
+
+# Private notes — never shared (REPO-STRUCTURE.md standard)
+_private/
+
+_backups/

@@ -1,0 +1,18 @@
+# Gitleaks config for mariana-outlook-mcp
+#
+# Mirrors mariana-google-mcp's posture: default rules on; allowlist only
+# gitignored local paths so working-tree (--no-git) scans stay quiet.
+# Real secret commits are still caught by the git-history scan.
+
+title = "mariana-outlook-mcp — suppress gitignored local paths"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Gitignored local files"
+paths = [
+    '''/\.env$''',
+    '''/node_modules/''',
+    '''/_private/''',
+]
