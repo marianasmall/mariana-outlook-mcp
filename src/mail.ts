@@ -122,7 +122,7 @@ export function registerMailTools(server: McpServer): void {
   // --- outlook_draft ---
   server.tool(
     "outlook_draft",
-    "Create a draft email. Does NOT send — the draft appears in Outlook's Drafts folder for manual review and sending. (The server's Microsoft permissions exclude sending entirely.)",
+    "Create a draft email. Does NOT send — the draft appears in Outlook's Drafts folder for manual review and sending. (The server's Microsoft permissions exclude sending entirely.) REPLYING: if the user said 'reply to' / 'write back to' / 'follow up on' an existing email, you MUST pass reply_to_message_id (get it from outlook_search or outlook_read). Omitting it silently starts a NEW conversation instead of threading — the result text says which happened, so check it.",
     {
       to: z.string().describe("Recipient email address(es), comma-separated"),
       subject: z.string().describe("Email subject"),
@@ -224,7 +224,11 @@ export function registerMailTools(server: McpServer): void {
         content: [
           {
             type: "text" as const,
-            text: `Draft created successfully (ID: ${draft.id}). Review and send from Outlook.${failureNote}`,
+            text: `Draft created (ID: ${draft.id}). ${
+              reply_to_message_id
+                ? `Threaded REPLY via createReply (conversation and original recipients preserved).`
+                : `NEW conversation (not a reply). If this was meant to reply to something, recreate it with reply_to_message_id.`
+            } Review and send from Outlook.${failureNote}`,
           },
         ],
         ...(attachFailures.length ? { isError: true } : {}),
