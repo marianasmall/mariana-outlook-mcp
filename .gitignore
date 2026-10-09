@@ -13,5 +13,8 @@ client_secret*.json
 
 # Private notes — never shared (REPO-STRUCTURE.md standard)
 _private/
+# Working notes stay local in this PUBLIC repo (2026-10-09: they named accounts + a legal matter)
+handoff.md
+PLANNING.md
 
 _backups/
