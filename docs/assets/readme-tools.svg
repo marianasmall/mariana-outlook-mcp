@@ -52,5 +52,5 @@
   <line class="rule" x1="28" y1="626" x2="852" y2="626"/>
   <text class="mono scope" x="28" y="652" xml:space="preserve">Graph scopes: offline_access  User.Read  Mail.ReadWrite  MailboxSettings.ReadWrite</text>
   <text class="mono scope" x="28" y="672" xml:space="preserve">              Calendars.ReadWrite  Contacts.Read</text>
-  <text class="mono safe" x="28" y="692">Mail.Send: not requested. The token cannot send email.</text>
+  <text class="mono safe" x="28" y="692">Mail.Send not requested. Drafts never send. Rule forwarding and invites are opt-in.</text>
 </svg>

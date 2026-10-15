@@ -1,8 +1,8 @@
 # mariana-outlook-mcp
 
-Let Claude Code read, organize and draft in your Outlook mailbox, calendar and contacts, without ever being able to send or delete.
+Let Claude Code read, organize and draft in your Outlook mailbox, calendar and contacts. It can't send email: the Mail.Send permission is never requested. It doesn't delete: mail moves to a To Be Deleted folder and events get a DELETE prefix. Mail-rule forwarding and calendar invites are opt-in actions you ask for.
 
-**Who this is for:** people who want AI help in Outlook (work M365 or personal Outlook/Hotmail) with guardrails Microsoft itself enforces.
+**Who this is for:** people who want AI help in Outlook (work M365 or personal Outlook/Hotmail) with safety-first defaults and a log of every change.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757)](https://claude.com/claude-code)
@@ -20,13 +20,17 @@ cd mariana-outlook-mcp && npm install && npm run build
 claude mcp add outlook --scope user -e MS_CLIENT_ID="<application-client-id>" -- node "$PWD/dist/index.js"
 ```
 
-A custom MCP (Model Context Protocol) server that gives Claude Code access to Outlook Mail, Calendar, and Contacts via Microsoft Graph, with safety-first defaults. Sibling of [mariana-google-mcp](https://github.com/marianasmall/mariana-google-mcp), same architecture pointed at Microsoft accounts (M365 work/school and personal Outlook/Hotmail).
+Then restart Claude Code and run the sign-in tool (Setup step 4).
+
+## What This Is
+
+A custom MCP (Model Context Protocol) server that connects Claude Code to Outlook Mail, Calendar, and Contacts through Microsoft Graph. Sibling of [mariana-google-mcp](https://github.com/marianasmall/mariana-google-mcp), same architecture pointed at Microsoft accounts (M365 work/school and personal Outlook/Hotmail).
 
 ## Design Philosophy
 
 Built for an operator who wants AI help managing their mailbox without risk of accidental damage:
 
-- **No sending email, enforced by Microsoft, not just this code.** The server never requests the `Mail.Send` permission, so its tokens are physically incapable of sending. You draft; you send from Outlook.
+- **No sending email, enforced by Microsoft, not just this code.** The server never requests the `Mail.Send` permission, so its tokens cannot send a message. You draft; you send from Outlook. Two opt-in actions can still make mail go out, and only when you ask: an inbox rule with a forwarding address (`outlook_create_rule`), and a calendar event created with `send_invites=true`.
 - **No deleting anything.** Mail moves to a "To Be Deleted" folder (reversible). Calendar events get "DELETE - " prepended to the title. You review and confirm in the Outlook UI.
 - **Every mutation is logged.** An append-only JSONL action log records every write with timestamps, tool name, account, and summary.
 - **Multi-account support.** Work and personal Microsoft accounts under named aliases.
