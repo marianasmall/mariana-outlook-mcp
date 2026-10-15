@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="704" viewBox="0 0 880 704" role="img" aria-labelledby="t d">
+  <title id="t">mariana-outlook-mcp: tools exposed to Claude Code</title>
+  <desc id="d">Terminal-style list of the 21 tools this MCP server registers, grouped by Auth, Mail, Calendar and Contacts, with the Microsoft Graph scopes it requests. Mail.Send is not requested.</desc>
+  <style>
+    .bg { fill: #0d1117; }
+    .bar { fill: #161b22; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .ttl { fill: #8b949e; font-size: 13px; }
+    .grp { fill: #d2a8ff; font-size: 13px; font-weight: 700; }
+    .tool { fill: #7ee787; font-size: 13px; }
+    .desc { fill: #c9d1d9; font-size: 13px; }
+    .scope { fill: #79c0ff; font-size: 12px; }
+    .safe { fill: #ffa657; font-size: 12px; font-weight: 700; }
+    .rule { stroke: #30363d; stroke-width: 1; }
+  </style>
+  <rect class="bg" width="880" height="704" rx="10"/>
+  <path class="bar" d="M10 0h860a10 10 0 0 1 10 10v26H0V10A10 10 0 0 1 10 0z"/>
+  <circle cx="22" cy="18" r="6" fill="#ff5f56"/>
+  <circle cx="42" cy="18" r="6" fill="#ffbd2e"/>
+  <circle cx="62" cy="18" r="6" fill="#27c93f"/>
+  <text class="mono ttl" x="440" y="23" text-anchor="middle">outlook: 21 tools (Microsoft Graph)</text>
+
+  <text class="mono grp" x="28" y="70">## Auth</text>
+  <text class="mono tool" x="40" y="92">microsoft_auth</text><text class="mono desc" x="250" y="92">Authenticate a Microsoft account (M365 or personal).</text>
+  <text class="mono tool" x="40" y="112">microsoft_status</text><text class="mono desc" x="250" y="112">Check connection health for all configured accounts.</text>
+
+  <text class="mono grp" x="28" y="146">## Mail</text>
+  <text class="mono tool" x="40" y="168">outlook_search</text><text class="mono desc" x="250" y="168">Search Outlook messages (KQL syntax).</text>
+  <text class="mono tool" x="40" y="188">outlook_read</text><text class="mono desc" x="250" y="188">Read a specific Outlook message by ID.</text>
+  <text class="mono tool" x="40" y="208">outlook_draft</text><text class="mono desc" x="250" y="208">Create a draft email. Does NOT send.</text>
+  <text class="mono tool" x="40" y="228">outlook_list_folders</text><text class="mono desc" x="250" y="228">List Outlook mail folders for an account.</text>
+  <text class="mono tool" x="40" y="248">outlook_list_categories</text><text class="mono desc" x="250" y="248">List Outlook categories (the Gmail-labels equivalent).</text>
+  <text class="mono tool" x="40" y="268">outlook_create_category</text><text class="mono desc" x="250" y="268">Create a new Outlook category.</text>
+  <text class="mono tool" x="40" y="288">outlook_apply_category</text><text class="mono desc" x="250" y="288">Apply a category to one or more Outlook messages.</text>
+  <text class="mono tool" x="40" y="308">outlook_remove_category</text><text class="mono desc" x="250" y="308">Remove a category from one or more Outlook messages.</text>
+  <text class="mono tool" x="40" y="328">outlook_create_rule</text><text class="mono desc" x="250" y="328">Create an Outlook inbox rule (the Gmail-filter equivalent).</text>
+  <text class="mono tool" x="40" y="348">outlook_move_to_delete</text><text class="mono desc" x="250" y="348">Soft-delete: move messages to a 'To Be Deleted' folder.</text>
+
+  <text class="mono grp" x="28" y="382">## Calendar</text>
+  <text class="mono tool" x="40" y="404">calendar_list</text><text class="mono desc" x="250" y="404">List upcoming calendar events.</text>
+  <text class="mono tool" x="40" y="424">calendar_search</text><text class="mono desc" x="250" y="424">Search calendar events by keyword in the title.</text>
+  <text class="mono tool" x="40" y="444">calendar_get</text><text class="mono desc" x="250" y="444">Get full details of a specific calendar event.</text>
+  <text class="mono tool" x="40" y="464">calendar_create</text><text class="mono desc" x="250" y="464">Create an event. Attendees are NOT invited by default.</text>
+  <text class="mono tool" x="40" y="484">calendar_update</text><text class="mono desc" x="250" y="484">Modify an existing calendar event.</text>
+  <text class="mono tool" x="40" y="504">calendar_flag_delete</text><text class="mono desc" x="250" y="504">Soft-delete: prepend 'DELETE - ' to the event title.</text>
+  <text class="mono tool" x="40" y="524">calendar_availability</text><text class="mono desc" x="250" y="524">Check free/busy status for a date or date range.</text>
+
+  <text class="mono grp" x="28" y="558">## Contacts</text>
+  <text class="mono tool" x="40" y="580">contacts_search</text><text class="mono desc" x="250" y="580">Search Outlook contacts by name, email, or phone number.</text>
+  <text class="mono tool" x="40" y="600">contacts_list</text><text class="mono desc" x="250" y="600">List Outlook contacts, optionally filtered by org or name.</text>
+
+  <line class="rule" x1="28" y1="626" x2="852" y2="626"/>
+  <text class="mono scope" x="28" y="652" xml:space="preserve">Graph scopes: offline_access  User.Read  Mail.ReadWrite  MailboxSettings.ReadWrite</text>
+  <text class="mono scope" x="28" y="672" xml:space="preserve">              Calendars.ReadWrite  Contacts.Read</text>
+  <text class="mono safe" x="28" y="692">Mail.Send: not requested. The token cannot send email.</text>
+</svg>
